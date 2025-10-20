@@ -4,6 +4,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Education from './components/Education';
+import Awards from './components/Awards';
 import ExploreMore from './components/ExploreMore';
 import Contact from './components/Contact';
 
@@ -16,6 +17,7 @@ function App() {
       <section id="projects"><Projects /></section>
       <section id="skills"><Skills /></section>
       <section id="education"><Education /></section>
+      <section id="awards"><Awards /></section>
       <section id="exploremore"><ExploreMore /></section>
       <section id="contact"><Contact /></section>
     </div>
