@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import profilePic from '../assets/mounisha.jpg';
 
 const About = () => {
-  const [hoveredCard, setHoveredCard] = useState(null);
-
   const techStack = [
     { category: 'Backend', skills: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'gRPC'], icon: '☕' },
     { category: 'Data & systems', skills: ['Microservices', 'Kafka', 'RedPanda', 'ClickHouse'], icon: '📊' },
@@ -104,8 +102,6 @@ const About = () => {
               <div
                 key={idx}
                 className="relative group"
-                onMouseEnter={() => setHoveredCard(idx)}
-                onMouseLeave={() => setHoveredCard(null)}
               >
                 <div className="relative bg-white/80 border border-cafe-biscuit/60 rounded-xl p-6 h-full hover:border-cafe-roast/50 hover:shadow-md transition-all">
                   <div className="text-3xl mb-3">{tech.icon}</div>
