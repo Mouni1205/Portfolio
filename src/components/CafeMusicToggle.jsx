@@ -1,16 +1,63 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 // Royalty-free focus / lofi-style music. No attribution required.
-// Credit (optional): SoundHelix (soundhelix.com). To use your own lofi: download from Mixkit or Lofi Generator, add MP3 to public/, then use process.env.PUBLIC_URL + '/your-file.mp3'
-const SOOTHING_MUSIC_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3';
+// Credit (optional): SoundHelix (soundhelix.com).
+// If using SoundCloud, provide the track page URL — the component will use
+// the SoundCloud Widget API to play the track (no local setup required).
+const SOOTHING_MUSIC_URL = 'https://soundcloud.com/royaltyfreemusic-nocopyrightmusic/vibe-tracks-take-you-home-tonight?si=724e46f090304e27b85e632250a5abc4&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing';
 
 const SPOTIFY_PROFILE_URL = 'https://open.spotify.com/user/31xmnrgfr2pz45yqeiq4erjmzk3q?si=9405f008c40542e4';
 
 const CafeMusicToggle = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+  const scIframeRef = useRef(null);
 
   useEffect(() => {
+    // If the URL is a SoundCloud track page, initialize the SoundCloud widget.
+    if (SOOTHING_MUSIC_URL.includes('soundcloud.com')) {
+      let widget;
+      let cancelled = false;
+
+      const loadWidgetApi = () => new Promise((res) => {
+        if (window.SC && window.SC.Widget) return res();
+        const s = document.createElement('script');
+        s.src = 'https://w.soundcloud.com/player/api.js';
+        s.onload = () => res();
+        document.body.appendChild(s);
+      });
+
+      loadWidgetApi().then(() => {
+        if (cancelled) return;
+        try {
+          widget = window.SC.Widget(scIframeRef.current);
+          audioRef.current = widget;
+          // Try to set a reasonable volume (SoundCloud widget expects 0-100)
+          if (typeof widget.setVolume === 'function') {
+            try { widget.setVolume(35); } catch (e) { /* ignore */ }
+          }
+          // Keep React state in sync with widget events
+          if (widget && window.SC && window.SC.Widget && window.SC.Widget.Events) {
+            try {
+              widget.bind(window.SC.Widget.Events.PLAY, () => setIsPlaying(true));
+              widget.bind(window.SC.Widget.Events.PAUSE, () => setIsPlaying(false));
+            } catch (e) { /* ignore */ }
+          }
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.error('SoundCloud widget init failed:', e);
+        }
+      });
+
+      return () => {
+        cancelled = true;
+        if (widget && typeof widget.pause === 'function') {
+          try { widget.pause(); } catch (e) { /* ignore */ }
+        }
+      };
+    }
+
+    // Fallback: regular HTML5 Audio for direct MP3 URLs
     const audio = new Audio(SOOTHING_MUSIC_URL);
     audio.volume = 0.35;
     audio.loop = true;
@@ -24,16 +71,55 @@ const CafeMusicToggle = () => {
   const toggle = () => {
     const audio = audioRef.current;
     if (!audio) return;
+    // If this is a SoundCloud widget, use the widget API
+    if (SOOTHING_MUSIC_URL.includes('soundcloud.com')) {
+      // widget: play / pause
+      if (isPlaying) {
+        if (typeof audio.pause === 'function') audio.pause();
+        setIsPlaying(false);
+      } else {
+        if (typeof audio.play === 'function') {
+          try { audio.play(); setIsPlaying(true); } catch (err) { /* ignore */ }
+        }
+      }
+      return;
+    }
+
+    // Regular HTMLAudioElement
     if (isPlaying) {
       audio.pause();
+      setIsPlaying(false);
     } else {
-      audio.play().catch(() => {});
+      audio.play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.error('Audio play failed:', err);
+        });
     }
-    setIsPlaying(!isPlaying);
   };
+
+  // Normalize SoundCloud track URL (strip query params) for embedding
+  const normalizedScUrl = SOOTHING_MUSIC_URL.includes('soundcloud.com')
+    ? SOOTHING_MUSIC_URL.split('?')[0]
+    : SOOTHING_MUSIC_URL;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-3">
+      {/* Hidden SoundCloud iframe for widget playback */}
+      {SOOTHING_MUSIC_URL.includes('soundcloud.com') && (
+        <iframe
+          ref={scIframeRef}
+          title="soundcloud-player"
+          width="100%"
+          height="166"
+          scrolling="no"
+          frameBorder="no"
+          allow="autoplay"
+          className="hidden"
+          src={`https://w.soundcloud.com/player/?url=${encodeURIComponent(normalizedScUrl)}&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false`}
+        />
+      )}
       {/* Play / Pause – royalty-free focus / lofi-style music */}
       <div className="flex flex-col items-center gap-2">
         <button
