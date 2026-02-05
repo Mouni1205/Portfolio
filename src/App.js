@@ -8,6 +8,7 @@ import Awards from './components/Awards';
 import ExploreMore from './components/ExploreMore';
 import Contact from './components/Contact';
 import CafeMusicToggle from './components/CafeMusicToggle';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <section id="awards"><Awards /></section>
       <section id="exploremore"><ExploreMore /></section>
       <section id="contact"><Contact /></section>
+      <Analytics />
     </div>
   );
 }
