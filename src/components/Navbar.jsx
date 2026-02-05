@@ -2,17 +2,16 @@ const Navbar = () => {
   const links = ['about', 'experience', 'projects', 'skills', 'education', 'awards', 'exploremore', 'contact'];
 
   return (
-    <nav className="sticky top-0 bg-white shadow-lg z-50 py-4 border-b-4" style={{ borderColor: '#3B82F6' }}>
+    <nav className="sticky top-0 bg-cafe-cream/95 backdrop-blur border-b border-cafe-biscuit/50 shadow-sm z-50 py-3">
       <div className="max-w-7xl mx-auto px-4">
-        <ul className="flex justify-center flex-wrap gap-4 text-sm font-bold text-gray-700">
+        <ul className="flex justify-center flex-wrap gap-2 md:gap-4 text-sm font-semibold text-cafe-espresso">
           {links.map(link => (
             <li key={link}>
-              <a 
-                href={`#${link}`} 
-                className="px-4 py-2 rounded-lg hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg mclaren-nav-hover"
-                style={{ '--hover-bg': '#FF8700' }}
+              <a
+                href={`#${link}`}
+                className="px-3 py-2 rounded-lg hover:text-cafe-cream transition-all duration-300 mclaren-nav-hover"
               >
-                {link.toUpperCase()}
+                {link === 'exploremore' ? 'Explore more' : link.charAt(0).toUpperCase() + link.slice(1)}
               </a>
             </li>
           ))}

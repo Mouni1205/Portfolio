@@ -7,11 +7,13 @@ import Education from './components/Education';
 import Awards from './components/Awards';
 import ExploreMore from './components/ExploreMore';
 import Contact from './components/Contact';
+import CafeMusicToggle from './components/CafeMusicToggle';
 
 function App() {
   return (
-    <div className="font-sans scroll-smooth">
+    <div className="font-sans scroll-smooth min-h-screen bg-cafe-cream">
       <Navbar />
+      <CafeMusicToggle />
       <section id="about"><About /></section>
       <section id="experience"><Experience /></section>
       <section id="projects"><Projects /></section>

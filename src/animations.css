@@ -1,272 +1,98 @@
-/* F1 Racing Animations */
-@keyframes raceIn {
-  0% {
-    transform: translateX(-100vw) rotate(-5deg);
-    opacity: 0;
-  }
-  70% {
-    transform: translateX(10px) rotate(2deg);
-  }
-  100% {
-    transform: translateX(0) rotate(0deg);
-    opacity: 1;
-  }
-}
-
-@keyframes pitStop {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-10px) scale(1.05);
-  }
+/* Cafe-style gentle animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes driftIn {
-  0% {
-    transform: translateX(-50px) rotate(-10deg);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0) rotate(0deg);
-    opacity: 1;
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Anime-inspired animations */
 @keyframes animeSlideUp {
-  0% {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  0% { transform: translateY(24px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes sparkle {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    filter: brightness(1);
-  }
-  50% {
-    transform: scale(1.1) rotate(5deg);
-    filter: brightness(1.3);
-  }
-}
-
-@keyframes cardFlip {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(180deg);
-  }
-}
-
-/* Pixar-style bouncy animations */
-@keyframes pixarBounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  25% {
-    transform: translateY(-15px);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
-  75% {
-    transform: translateY(-3px);
-  }
-}
-
-@keyframes squashStretch {
-  0%, 100% {
-    transform: scaleX(1) scaleY(1);
-  }
-  50% {
-    transform: scaleX(1.1) scaleY(0.9);
-  }
+@keyframes softPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
 }
 
 @keyframes floatUp {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
-/* Racing track effect */
-@keyframes racingLines {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100px 0;
-  }
+@keyframes pixarBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-/* Tire marks effect */
-@keyframes tireMarks {
-  0% {
-    opacity: 0;
-    transform: translateX(-20px) rotate(-5deg);
-  }
-  50% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(20px) rotate(5deg);
-  }
+@keyframes squashStretch {
+  0%, 100% { transform: scaleX(1) scaleY(1); }
+  50% { transform: scaleX(1.03) scaleY(0.98); }
 }
 
-/* Speed lines */
-@keyframes speedLines {
-  0% {
-    transform: translateX(0) scaleX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-100px) scaleX(1);
-    opacity: 0;
-  }
+/* Warm card hover */
+@keyframes cardGlow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(139, 115, 85, 0.08); }
+  50% { box-shadow: 0 8px 28px rgba(139, 115, 85, 0.14); }
 }
 
-/* Utility classes */
-.race-in {
-  animation: raceIn 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.drift-in {
-  animation: driftIn 0.8s ease-out;
-}
+.race-in { animation: fadeIn 0.9s ease-out; }
+.drift-in { animation: driftIn 0.7s ease-out; }
+.anime-slide { animation: animeSlideUp 0.6s ease-out; }
+.pixar-bounce { animation: pixarBounce 3s ease-in-out infinite; }
+.float-up { animation: floatUp 4s ease-in-out infinite; }
+.squash-stretch-hover:hover { animation: squashStretch 0.35s ease-in-out; }
 
 .pit-stop-hover:hover {
-  animation: pitStop 0.6s ease-in-out;
-}
-
-.anime-slide {
-  animation: animeSlideUp 0.6s ease-out;
+  animation: softPulse 0.6s ease-in-out;
 }
 
 .sparkle-hover:hover {
-  animation: sparkle 0.5s ease-in-out;
+  transform: scale(1.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.pixar-bounce {
-  animation: pixarBounce 2s ease-in-out infinite;
-}
-
-.float-up {
-  animation: floatUp 3s ease-in-out infinite;
-}
-
-.squash-stretch-hover:hover {
-  animation: squashStretch 0.4s ease-in-out;
-}
-
-/* Racing stripes background */
-.racing-stripes {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    transparent 45%,
-    rgba(255, 255, 255, 0.1) 45%,
-    rgba(255, 255, 255, 0.1) 55%,
-    transparent 55%,
-    transparent 100%
-  );
-  background-size: 100px 100%;
-  animation: racingLines 2s linear infinite;
-}
-
-/* McLaren papaya gradient */
-.mclaren-gradient {
-  background: linear-gradient(135deg, #FF8700 0%, #FFA500 50%, #FF6E00 100%);
-}
-
-/* Harry Potter magic glow */
-.magic-glow {
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-  transition: box-shadow 0.3s ease;
-}
-
-.magic-glow:hover {
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 135, 0, 0.4);
-}
-
-/* Anime card effect */
+/* Cafe-style card */
 .anime-card {
   position: relative;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.3s ease;
+}
+.anime-card:hover {
+  box-shadow: 0 12px 32px rgba(139, 115, 85, 0.12);
 }
 
-.anime-card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f7b731);
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: -1;
-}
-
-.anime-card:hover::before {
-  opacity: 1;
-  animation: sparkle 1.5s ease-in-out infinite;
-}
-
-/* Pixar glow effect */
-.pixar-glow {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+.magic-glow {
+  box-shadow: 0 4px 24px rgba(139, 115, 85, 0.15);
   transition: box-shadow 0.3s ease;
 }
-
-.pixar-glow:hover {
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(100, 200, 255, 0.4);
+.magic-glow:hover {
+  box-shadow: 0 8px 36px rgba(139, 115, 85, 0.2);
 }
 
-/* Staggered animation delays */
+/* Subtle paper texture stripes (like book pages) */
+.racing-stripes {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 60px,
+    rgba(139, 115, 85, 0.03) 60px,
+    rgba(139, 115, 85, 0.03) 61px
+  );
+  background-size: 100% 100%;
+}
+
 .stagger-1 { animation-delay: 0.1s; }
 .stagger-2 { animation-delay: 0.2s; }
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
 
-/* Blue & Orange nav hover */
+/* Nav hover - warm cafe */
 .mclaren-nav-hover:hover {
-  background: linear-gradient(135deg, #3B82F6 0%, #F97316 100%);
+  background: linear-gradient(135deg, #8B7355 0%, #5C4A3A 100%);
+  color: #FDF8F3;
 }
-
-/* F1 Car Racing Animation */
-@keyframes f1CarRace {
-  0% {
-    top: -50px;
-    transform: translateY(0) translateX(-10px);
-  }
-  100% {
-    top: calc(100% + 50px);
-    transform: translateY(0) translateX(10px);
-  }
-}
-
-.f1-car-timeline {
-  position: absolute;
-  left: -4rem;
-  font-size: 2rem;
-  animation: f1CarRace 15s ease-in-out infinite;
-  filter: drop-shadow(0 4px 8px rgba(255, 135, 0, 0.4));
-  z-index: 10;
-}
-

@@ -10,48 +10,47 @@ const awards = [
     ]
   },
   {
-    title: "FSU CTF 2024 - 5th Place",
-    description: "Competed in Capture The Flag competition covering Web Exploitation, Forensics, Cryptography, Binary Exploitation, and SQL Injection"
+    title: "FSU CTF 2024 – 5th Place",
+    description: "Capture The Flag: Web Exploitation, Forensics, Cryptography, Binary Exploitation, SQL Injection"
   }
 ];
 
 const Awards = () => (
-  <section id="awards" className="bg-gradient-to-br from-white to-gray-50 px-6 py-16 relative overflow-hidden">
-    {/* Anime sparkles background */}
-    <div className="absolute top-10 right-10 text-6xl opacity-20 pixar-bounce">✨</div>
-    <div className="absolute bottom-10 left-10 text-6xl opacity-20 float-up">🏆</div>
-    
+  <section id="awards" className="bg-cafe-cream px-6 py-16 relative overflow-hidden border-t border-cafe-biscuit/40">
+    <div className="absolute top-10 right-10 text-5xl opacity-10 pixar-bounce">✨</div>
+    <div className="absolute bottom-10 left-10 text-5xl opacity-10 float-up">🏆</div>
+
     <div className="max-w-5xl mx-auto relative z-10">
-      <h2 className="text-4xl font-bold text-center mb-4 anime-slide">
-        🏆 Achievements Unlocked
+      <h2 className="font-serif text-4xl font-bold text-center mb-2 text-cafe-espresso anime-slide">
+        Achievements
       </h2>
-      <p className="text-center text-gray-600 mb-12 anime-slide">Collecting badges like Pokémon 🎯✨</p>
-      
+      <p className="text-center text-cafe-roast mb-12 anime-slide">A few highlights.</p>
+
       <div className="grid md:grid-cols-2 gap-8">
         {awards.map((award, index) => (
-          <div 
-            key={index} 
-            className={`bg-gradient-to-br from-white to-gray-50 shadow-xl rounded-2xl p-8 anime-card drift-in stagger-${index + 1} hover:shadow-2xl transition-all border-2 border-transparent hover:border-yellow-400`}
+          <div
+            key={index}
+            className="anime-card bg-white/90 border border-cafe-biscuit/50 rounded-2xl shadow-sm p-8 drift-in hover:shadow-md hover:border-cafe-roast/40 transition-all"
           >
             <div className="flex items-start gap-3 mb-4">
-              <span className="text-4xl squash-stretch-hover">{index === 0 ? '☁️' : '🎯'}</span>
-              <h3 className="text-2xl font-bold text-gray-800">{award.title}</h3>
+              <span className="text-4xl">{index === 0 ? '☁️' : '🎯'}</span>
+              <h3 className="font-serif text-xl font-bold text-cafe-espresso">{award.title}</h3>
             </div>
-            
+
             {award.items && (
               <ul className="space-y-3">
                 {award.items.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 group">
-                    <span className="mt-1 group-hover:scale-125 transition-transform" style={{ color: '#F97316' }}>⚡</span>
-                    <span className="text-gray-700 text-sm leading-relaxed">{item}</span>
+                  <li key={i} className="flex items-start gap-2 text-cafe-brown text-sm">
+                    <span className="text-cafe-roast">·</span>
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
             )}
-            
+
             {award.description && (
-              <p className="text-gray-700 leading-relaxed flex items-start gap-2">
-                <span className="text-lg" style={{ color: '#3B82F6' }}>🏁</span>
+              <p className="text-cafe-brown text-sm leading-relaxed flex items-start gap-2">
+                <span className="text-cafe-roast">·</span>
                 <span>{award.description}</span>
               </p>
             )}
@@ -63,4 +62,3 @@ const Awards = () => (
 );
 
 export default Awards;
-

@@ -3,3 +3,7 @@
 @tailwind utilities;
 
 @import './animations.css';
+
+body {
+  font-family: 'Nunito', system-ui, sans-serif;
+}
