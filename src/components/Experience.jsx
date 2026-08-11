@@ -44,7 +44,7 @@ const experiences = [
     company: "Thoughtworks · Standard Chartered Bank",
     title: "Graduate Software Developer",
     location: "Hyderabad, India",
-    period: "May 2021 – Jun 2022",
+    period: "May 2020 – Jun 2022",
     tech: ["Java", "Spring Boot", "GraphQL", "PostgreSQL", "Kafka", "Prometheus", "Pact", "SwiftUI", "Xcode", "UIKit", "Kingfisher"],
     description: [
       "Developed Java/Spring Boot microservices with GraphQL APIs for a large-scale banking platform, designing GraphQL schemas to serve web and mobile clients with PostgreSQL for data persistence.",

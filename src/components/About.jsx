@@ -28,7 +28,7 @@ const About = () => {
     { year: 'Sep 2024 – May 2025', role: 'Software Developer – Cloud + Backend', company: 'FSU Health and Wellness Center', highlight: 'Patient check-in system, AWS, OAuth2' },
     { year: '2023 – 2025', role: 'M.S. Computer Science, Cybersecurity', company: 'Florida State University', highlight: 'Security & distributed systems' },
     { year: '2022 – 2023', role: 'Software Developer', company: 'Thoughtworks · NPCI', highlight: '355M+ IMPS transactions on RAFT-based DLT' },
-    { year: '2021 – 2022', role: 'Graduate Software Developer', company: 'Thoughtworks · Standard Chartered', highlight: 'GraphQL + SwiftUI banking' },
+    { year: '2020 – 2022', role: 'Graduate Software Developer', company: 'Thoughtworks · Standard Chartered', highlight: 'GraphQL + SwiftUI banking' },
   ];
 
   return (
